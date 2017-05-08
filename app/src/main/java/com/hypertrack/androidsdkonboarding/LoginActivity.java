@@ -111,15 +111,16 @@ public class LoginActivity extends BaseActivity {
         // Get User details, if specified
         final String name = nameText.getText().toString();
         final String phoneNumber = phoneNumberText.getText().toString();
+        final String lookupId = phoneNumber;
 
         /**
-         * Create a User on HyperTrack Server here to login your user & configure HyperTrack SDK with
-         * this generated HyperTrack UserId.
+         * Get or Create a User for given lookupId on HyperTrack Server here to login your user
+         * & configure HyperTrack SDK with this generated HyperTrack UserId.
          * OR
          * Implement your API call for User Login and get back a HyperTrack UserId from your API Server
          * to be configured in the HyperTrack SDK.
          */
-        HyperTrack.createUser(name, phoneNumber, phoneNumber, new HyperTrackCallback() {
+        HyperTrack.getOrCreateUser(name, phoneNumber, lookupId, new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
                 // Hide Login Button loader
