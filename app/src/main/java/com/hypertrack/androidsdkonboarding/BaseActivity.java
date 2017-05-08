@@ -12,7 +12,7 @@ public class BaseActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     public void initToolbar(String title) {
-        initToolbar(title, true);
+        initToolbar(title, false);
     }
 
     public void initToolbar(String title, boolean homeButtonEnabled) {

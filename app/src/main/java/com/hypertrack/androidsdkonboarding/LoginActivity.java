@@ -6,11 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.TaskStackBuilder;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -18,6 +14,7 @@ import android.widget.Toast;
 
 import com.hypertrack.lib.HyperTrack;
 import com.hypertrack.lib.callbacks.HyperTrackCallback;
+import com.hypertrack.lib.internal.common.util.TextUtils;
 import com.hypertrack.lib.models.ErrorResponse;
 import com.hypertrack.lib.models.SuccessResponse;
 import com.hypertrack.lib.models.User;
@@ -28,43 +25,8 @@ import com.hypertrack.lib.models.User;
 
 public class LoginActivity extends BaseActivity {
 
-    private TextInputLayout nameHeader, phoneNumberHeader;
     private EditText nameText, phoneNumberText;
     private LinearLayout loginBtnLoader;
-
-    private TextWatcher userNameTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if (s != null && s.length() > 0) {
-                nameHeader.setError(null);
-            }
-        }
-    };
-
-    private TextWatcher passwordTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if (s != null && s.length() > 0) {
-                phoneNumberHeader.setError(null);
-            }
-        }
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +34,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         // Check if user is logged in
-        if (!TextUtils.isEmpty(HyperTrack.getUserId())) {
+        if (HyperTrack.isTracking()) {
             Intent mainActivityIntent = new Intent(this, MainActivity.class);
             startActivity(mainActivityIntent);
             finish();
@@ -80,7 +42,7 @@ public class LoginActivity extends BaseActivity {
         }
 
         // Initialize Toolbar
-        initToolbar(getString(R.string.login_activity_title), false);
+        initToolbar(getString(R.string.login_activity_title));
 
         // Initialize UI Views
         initUIViews();
@@ -91,16 +53,10 @@ public class LoginActivity extends BaseActivity {
      */
     private void initUIViews() {
         // Initialize UserName Views
-        nameHeader = (TextInputLayout) findViewById(R.id.login_name_header);
         nameText = (EditText) findViewById(R.id.login_name);
-        if (nameText != null)
-            nameText.addTextChangedListener(userNameTextWatcher);
 
         // Initialize Password Views
-        phoneNumberHeader = (TextInputLayout) findViewById(R.id.login_phone_number_header);
         phoneNumberText = (EditText) findViewById(R.id.login_phone_number);
-        if (phoneNumberText != null)
-            phoneNumberText.addTextChangedListener(passwordTextWatcher);
 
         // Initialize Login Btn Loader
         loginBtnLoader = (LinearLayout) findViewById(R.id.login_user_login_btn_loader);
@@ -144,6 +100,11 @@ public class LoginActivity extends BaseActivity {
      * and configure the SDK using this generated UserId.
      */
     private void attemptUserLogin() {
+        if (TextUtils.isEmpty(phoneNumberText.getText().toString())) {
+            Toast.makeText(this, R.string.login_error_msg_invalid_params, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Show Login Button loader
         loginBtnLoader.setVisibility(View.VISIBLE);
 
@@ -158,7 +119,7 @@ public class LoginActivity extends BaseActivity {
          * Implement your API call for User Login and get back a HyperTrack UserId from your API Server
          * to be configured in the HyperTrack SDK.
          */
-        HyperTrack.createUser(name, phoneNumber, new HyperTrackCallback() {
+        HyperTrack.createUser(name, phoneNumber, phoneNumber, new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
                 // Hide Login Button loader

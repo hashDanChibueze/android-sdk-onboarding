@@ -15,6 +15,11 @@
 
     <string name="login_success_msg">User Logged In successful</string>
     <string name="login_error_msg">User Login failed.</string>
+    <string name="login_error_msg_invalid_params">User Login failed. Please check input params specified.</string>
+
+    <!-- Main Screen strings -->
+    <string name="main_logout_success_msg">Logout successful</string>
+    <string name="logout_button_text">Logout</string>
 
     <!-- Permission strings -->
     <string name="enable_location_settings">Enable Location settings in HIGH_ACCURACY mode to proceed</string>
