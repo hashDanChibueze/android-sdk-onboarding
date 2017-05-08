@@ -1,4 +1,4 @@
-package hypertrack.com.androidsdkonboarding;
+package com.hypertrack.androidsdkonboarding;
 
 import android.support.v7.app.AppCompatActivity;
 

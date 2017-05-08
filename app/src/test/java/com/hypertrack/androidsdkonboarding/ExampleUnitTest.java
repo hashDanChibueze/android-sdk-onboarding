@@ -1,4 +1,4 @@
-package hypertrack.com.androidsdkonboarding;
+package com.hypertrack.androidsdkonboarding;
 
 import org.junit.Test;
 

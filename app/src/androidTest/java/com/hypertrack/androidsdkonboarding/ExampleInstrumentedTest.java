@@ -1,4 +1,4 @@
-package hypertrack.com.androidsdkonboarding;
+package com.hypertrack.androidsdkonboarding;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("hypertrack.com.androidsdkonboarding", appContext.getPackageName());
+        assertEquals("com.hypertrack.androidsdkonboarding", appContext.getPackageName());
     }
 }
