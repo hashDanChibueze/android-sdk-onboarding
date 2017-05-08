@@ -33,17 +33,13 @@ Method parameters
 
 Use this API in conjunction to your app's login flow, and call `getOrCreate` at the end of a successful login flow. This API is a network call, and needs to be done only once in the user session lifecycle.
 
-> Waiting for your app to run
-
 # Start tracking
 Use the `startTracking()` method to start tracking. Once the user starts tracking, you can see **Trips** and **Stops** of the user.
 
 This is a non-blocking API call, and will also work when the device is offline. 
 
-> Waiting for your app to run
-
 > **View on the dashboard**
-> View the user's trips and stops here.
+> View the user's trips and stops [here](https://dashboard.hypertrack.com).
 
 # Stop tracking
 Use the `stopTracking()` method to stop tracking. This can be done when the user logs out.
