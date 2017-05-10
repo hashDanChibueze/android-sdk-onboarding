@@ -15,3 +15,15 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# Proguard Rules for HyperTrack SDK
+-keep class com.hypertrack.lib.** { *; }
+-dontwarn com.hypertrack.lib.**
+
+# Proguard Rules to ignore InnerClass warnings for Paho SDK
+-keepattributes EnclosingMethod
+-keepattributes InnerClasses
+
+# Proguard Rules for Google's Play Services SDK
+-keep public class com.google.android.gms.* { public *; }
+-dontwarn com.google.android.gms.**

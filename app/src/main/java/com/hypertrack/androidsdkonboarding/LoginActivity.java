@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.TaskStackBuilder;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.hypertrack.lib.HyperTrack;
 import com.hypertrack.lib.callbacks.HyperTrackCallback;
-import com.hypertrack.lib.internal.common.util.TextUtils;
 import com.hypertrack.lib.models.ErrorResponse;
 import com.hypertrack.lib.models.SuccessResponse;
 import com.hypertrack.lib.models.User;
@@ -49,7 +48,8 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * Call this method to initialize UI views and handle listeners for these views
+     * Call this method to initialize UI views and handle listeners for these
+     * views
      */
     private void initUIViews() {
         // Initialize UserName Views
@@ -59,7 +59,7 @@ public class LoginActivity extends BaseActivity {
         phoneNumberText = (EditText) findViewById(R.id.login_phone_number);
 
         // Initialize Login Btn Loader
-        loginBtnLoader = (LinearLayout) findViewById(R.id.login_user_login_btn_loader);
+        loginBtnLoader = (LinearLayout) findViewById(R.id.login_btn_loader);
     }
 
     /**
@@ -71,12 +71,14 @@ public class LoginActivity extends BaseActivity {
      * @param view
      */
     public void onLoginButtonClick(View view) {
-        // Check if Location Settings are enabled, if yes then attempt DriverLogin
+        // Check if Location Settings are enabled, if yes then attempt
+        // DriverLogin
         checkForLocationSettings();
     }
 
     /**
-     * Call this method to check Location Settings before proceeding for User Login
+     * Call this method to check Location Settings before proceeding for User
+     * Login
      */
     private void checkForLocationSettings() {
         // Check for Location permission
@@ -96,12 +98,13 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * Call this method to attempt user login. This method will create a User on HyperTrack Server
-     * and configure the SDK using this generated UserId.
+     * Call this method to attempt user login. This method will create a User
+     * on HyperTrack Server and configure the SDK using this generated UserId.
      */
     private void attemptUserLogin() {
         if (TextUtils.isEmpty(phoneNumberText.getText().toString())) {
-            Toast.makeText(this, R.string.login_error_msg_invalid_params, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.login_error_msg_invalid_params,
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -114,13 +117,15 @@ public class LoginActivity extends BaseActivity {
         final String lookupId = phoneNumber;
 
         /**
-         * Get or Create a User for given lookupId on HyperTrack Server here to login your user
-         * & configure HyperTrack SDK with this generated HyperTrack UserId.
+         * Get or Create a User for given lookupId on HyperTrack Server here to
+         * login your user & configure HyperTrack SDK with this generated
+         * HyperTrack UserId.
          * OR
-         * Implement your API call for User Login and get back a HyperTrack UserId from your API Server
-         * to be configured in the HyperTrack SDK.
+         * Implement your API call for User Login and get back a HyperTrack
+         * UserId from your API Server to be configured in the HyperTrack SDK.
          */
-        HyperTrack.getOrCreateUser(name, phoneNumber, lookupId, new HyperTrackCallback() {
+        HyperTrack.getOrCreateUser(name, phoneNumber, lookupId,
+                new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
                 // Hide Login Button loader
@@ -128,8 +133,8 @@ public class LoginActivity extends BaseActivity {
 
                 User user = (User) successResponse.getResponseObject();
                 // Handle createUser success here, if required
-                // HyperTrack SDK auto-configures UserId on createUser API call, so no need to call
-                // HyperTrack.setUserId() API
+                // HyperTrack SDK auto-configures UserId on createUser API call,
+                // so no need to call HyperTrack.setUserId() API
 
                 // On UserLogin success
                 onUserLoginSuccess();
@@ -140,7 +145,8 @@ public class LoginActivity extends BaseActivity {
                 // Hide Login Button loader
                 loginBtnLoader.setVisibility(View.GONE);
 
-                Toast.makeText(LoginActivity.this, R.string.login_error_msg + " " + errorResponse.getErrorMessage(),
+                Toast.makeText(LoginActivity.this, R.string.login_error_msg
+                        + " " + errorResponse.getErrorMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -156,13 +162,14 @@ public class LoginActivity extends BaseActivity {
                 // Hide Login Button loader
                 loginBtnLoader.setVisibility(View.GONE);
 
-                Toast.makeText(LoginActivity.this, R.string.login_success_msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, R.string.login_success_msg,
+                        Toast.LENGTH_SHORT).show();
 
                 // Start User Session by starting MainActivity
-                TaskStackBuilder.create(LoginActivity.this)
-                        .addNextIntentWithParentStack(new Intent(LoginActivity.this, MainActivity.class)
-                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                        .startActivities();
+                Intent mainActivityIntent = new Intent(
+                        LoginActivity.this, MainActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(mainActivityIntent);
                 finish();
             }
 
@@ -171,36 +178,58 @@ public class LoginActivity extends BaseActivity {
                 // Hide Login Button loader
                 loginBtnLoader.setVisibility(View.GONE);
 
-                Toast.makeText(LoginActivity.this, R.string.login_error_msg + " " + errorResponse.getErrorMessage(),
+                Toast.makeText(LoginActivity.this, R.string.login_error_msg
+                        + " " + errorResponse.getErrorMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    /**
+     * Handle on Grant Location Permissions request accepted/denied result
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions,
+                grantResults);
 
         if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0]
+                    == PackageManager.PERMISSION_GRANTED) {
+                // Check if Location Settings are enabled to proceed
                 checkForLocationSettings();
 
             } else {
                 // Handle Location Permission denied error
-                Toast.makeText(this, "Location Permission denied.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Location Permission denied.",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    /**
+     * Handle on Enable Location Services request accepted/denied result
+     * @param requestCode
+     * @param resultCode
+     */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_SERVICES) {
             if (resultCode == Activity.RESULT_OK) {
+                // Check if Location Settings are enabled to proceed
                 checkForLocationSettings();
+
             } else {
                 // Handle Enable Location Services request denied error
-                Toast.makeText(this, R.string.enable_location_settings, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.enable_location_settings,
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
