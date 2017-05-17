@@ -25,6 +25,7 @@ The SDK uses the `ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION` permissions
 The SDK needs a **User** object to identify the device. The SDK has a convenience method `getOrCreateUser()` to lookup an existing user using a unique identifier (called `lookupId`) or create one if necessary.
 
 Method parameters
+
 | Parameter | Description |
 |-----------|-------------|
 | userName  | Name of the user entity |
