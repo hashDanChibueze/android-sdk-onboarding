@@ -45,6 +45,10 @@ This is a non-blocking API call, and will also work when the device is offline.
 # Stop tracking
 Use the `stopTracking()` method to stop tracking. This can be done when the user logs out.
 
+# Simulate a trip for Testing
+To simulate a trip, replace `startTracking` API with `startMockTracking` and `stopTracking` API with `stopMockTracking`.
+Refer to our [docs](docs.hypertrack.com/sdks/android/basic.html#simulate-a-trip-for-testing) for more info.
+
 > **Ready to deploy!**
 > Your Android app is all set to be deployed on the Play Store. As your users update and log in, their live location will be visualized on this dashboard.
 
