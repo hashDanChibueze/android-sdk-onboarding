@@ -35,8 +35,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:design:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
 
     /**
@@ -47,7 +47,7 @@ dependencies {
      * transitive = true, enables the SDK to include its internal dependencies
      * automatically. Refer here for more info on HyperTrack SDK dependencies.
      */
-    compile('com.hypertrack:android:0.2.1:release@aar') {
+    compile('com.hypertrack:android:0.3.5:release@aar') {
         transitive = true;
     }
 }
