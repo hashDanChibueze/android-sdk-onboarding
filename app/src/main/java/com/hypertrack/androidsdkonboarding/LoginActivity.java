@@ -89,7 +89,7 @@ public class LoginActivity extends BaseActivity {
 
         // Check for Location settings
         if (!HyperTrack.checkLocationServices(this)) {
-            HyperTrack.requestLocationServices(this, null);
+            HyperTrack.requestLocationServices(this);
         }
 
         // Location Permissions and Settings have been enabled
