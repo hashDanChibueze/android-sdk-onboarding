@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.hypertrack.lib.HyperTrack;
 
+import static android.util.Log.VERBOSE;
+
 /**
  * Created by piyush on 08/05/17.
  */
@@ -20,5 +22,6 @@ public class MyApplication extends Application {
         // @NOTE: Add **YOUR_PUBLISHABLE_KEY_HERE** here for SDK to be
         // authenticated with HyperTrack Server
         HyperTrack.initialize(this, YOUR_PUBLISHABLE_KEY_HERE);
+        HyperTrack.enableDebugLogging(VERBOSE);
     }
 }
