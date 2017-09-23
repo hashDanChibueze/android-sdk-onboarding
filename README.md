@@ -3,6 +3,19 @@ Example app for Android SDK Onboarding flow
 
 HyperTrack Onboarding link: https://dashboard.hypertrack.com/onboarding/sdk/android
 
+## Mock tracking
+To use mock data to test, you can make the following changes:
+
+1. replace `startTracking` with `startMockTracking`
+2. replace `stopTracking` with `stopMockTracking`
+
+This repo has a branch that uses mock tracking APIs, called `mock-tracking`. You can check out this branch and compile to avoid making the code changes yourself.
+
+```
+git pull
+git checkout mock-tracking
+```
+
 ## Install the SDK
 
 1. In your app's `build.gradle` file, define the minimum SDK version, repositories and dependencies as shown. Once configured, run a gradle sync to import the SDK and its dependencies to your project.
