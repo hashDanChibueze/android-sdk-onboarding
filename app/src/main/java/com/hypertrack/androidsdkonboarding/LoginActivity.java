@@ -156,7 +156,7 @@ public class LoginActivity extends BaseActivity {
      * Call this method when user has successfully logged in
      */
     private void onUserLoginSuccess() {
-        HyperTrack.startTracking(new HyperTrackCallback() {
+        HyperTrack.startMockTracking(new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
                 // Hide Login Button loader

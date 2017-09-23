@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity {
                     Toast.LENGTH_SHORT).show();
 
             // Stop HyperTrack SDK
-            HyperTrack.stopTracking();
+            HyperTrack.stopMockTracking();
 
             // Proceed to LoginActivity for a fresh User Login
             Intent loginIntent = new Intent(MainActivity.this,
