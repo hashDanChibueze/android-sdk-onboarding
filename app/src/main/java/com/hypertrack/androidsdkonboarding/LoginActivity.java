@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -14,9 +15,11 @@ import android.widget.Toast;
 
 import com.hypertrack.lib.HyperTrack;
 import com.hypertrack.lib.callbacks.HyperTrackCallback;
+import com.hypertrack.lib.internal.common.util.HTTextUtils;
 import com.hypertrack.lib.models.ErrorResponse;
 import com.hypertrack.lib.models.SuccessResponse;
 import com.hypertrack.lib.models.User;
+import com.hypertrack.lib.models.UserParams;
 
 /**
  * Created by piyush on 08/05/17.
@@ -47,10 +50,7 @@ public class LoginActivity extends BaseActivity {
         initUIViews();
     }
 
-    /**
-     * Call this method to initialize UI views and handle listeners for these
-     * views
-     */
+    // Call this method to initialize UI views and handle listeners for these views
     private void initUIViews() {
         // Initialize UserName Views
         nameText = (EditText) findViewById(R.id.login_name);
@@ -77,8 +77,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * Call this method to check Location Settings before proceeding for User
-     * Login
+     * Call this method to check Location Settings before proceeding for UserLogin
      */
     private void checkForLocationSettings() {
         // Check for Location permission
@@ -114,7 +113,8 @@ public class LoginActivity extends BaseActivity {
         // Get User details, if specified
         final String name = nameText.getText().toString();
         final String phoneNumber = phoneNumberText.getText().toString();
-        final String lookupId = phoneNumber;
+        String UUID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        final String lookupId = HTTextUtils.isEmpty(UUID) ? phoneNumber : UUID;
 
         /**
          * Get or Create a User for given lookupId on HyperTrack Server here to
@@ -124,8 +124,8 @@ public class LoginActivity extends BaseActivity {
          * Implement your API call for User Login and get back a HyperTrack
          * UserId from your API Server to be configured in the HyperTrack SDK.
          */
-        HyperTrack.getOrCreateUser(name, phoneNumber, lookupId,
-                new HyperTrackCallback() {
+        UserParams userParams = new UserParams().setName(name).setPhone(phoneNumber).setLookupId(lookupId);
+        HyperTrack.getOrCreateUser(userParams, new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
                 // Hide Login Button loader
@@ -146,7 +146,7 @@ public class LoginActivity extends BaseActivity {
                 loginBtnLoader.setVisibility(View.GONE);
 
                 Toast.makeText(LoginActivity.this, R.string.login_error_msg
-                        + " " + errorResponse.getErrorMessage(),
+                                + " " + errorResponse.getErrorMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -179,7 +179,7 @@ public class LoginActivity extends BaseActivity {
                 loginBtnLoader.setVisibility(View.GONE);
 
                 Toast.makeText(LoginActivity.this, R.string.login_error_msg
-                        + " " + errorResponse.getErrorMessage(),
+                                + " " + errorResponse.getErrorMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -187,6 +187,7 @@ public class LoginActivity extends BaseActivity {
 
     /**
      * Handle on Grant Location Permissions request accepted/denied result
+     *
      * @param requestCode
      * @param permissions
      * @param grantResults
@@ -214,6 +215,7 @@ public class LoginActivity extends BaseActivity {
 
     /**
      * Handle on Enable Location Services request accepted/denied result
+     *
      * @param requestCode
      * @param resultCode
      */
