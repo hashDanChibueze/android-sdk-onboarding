@@ -1,4 +1,4 @@
-export const onboardingContent = [
+[
   {
     name : '1 | Install SDK',
     status : 'active',
@@ -152,4 +152,4 @@ export const onboardingContent = [
     status : 'incomplete',
     content : []
   }
-];
+]
