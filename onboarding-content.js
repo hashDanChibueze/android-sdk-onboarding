@@ -81,7 +81,7 @@
       }
     ]
   }, {
-    "name ": "4 | Add user",
+    "name": "4 | Add user",
     "status": "incomplete",
     "content" : [
       {
