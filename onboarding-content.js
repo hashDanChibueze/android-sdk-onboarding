@@ -1,4 +1,4 @@
-[
+export [
   {
     name : '1 | Install SDK',
     status : 'active',
