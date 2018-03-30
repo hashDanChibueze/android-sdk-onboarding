@@ -1,6 +1,6 @@
 [
   {
-    "name ": "1 | Install SDK",
+    "name": "1 | Install SDK",
     "status": "active",
     "content" : [
       {
@@ -37,7 +37,7 @@
       }
     ]
   }, {
-    "name ": "2 | Set permissions",
+    "name": "2 | Set permissions",
     "status": "incomplete",
     "content": [{
       "fileName": "LoginActivity.java",
