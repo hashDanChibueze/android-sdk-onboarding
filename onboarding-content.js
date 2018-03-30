@@ -39,7 +39,7 @@
   }, {
     "name ": "2 | Set permissions",
     "status": "incomplete",
-    content: [{
+    "content": [{
       "fileName": "LoginActivity.java",
       "fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
       "lines": [
@@ -66,10 +66,10 @@
   }, {
     "name ": "3 | Enable communication",
     "status": "incomplete",
-    content: [
+    "content": [
       {
         "fileName": "MyFirebaseMessagingService.java",
-        "fileURL": `https://raw.githubusercontent.com/hypertrack/use-cases-example-android/master/app/src/main/java/com/hypertrack/usecases/firebase/MyFirebaseMessagingService.java`,
+        "fileURL": "https://raw.githubusercontent.com/hypertrack/use-cases-example-android/master/app/src/main/java/com/hypertrack/usecases/firebase/MyFirebaseMessagingService.java",
         "lines": [
           {
             "start": 1,
@@ -110,7 +110,7 @@
     "status": "incomplete",
     "content" : [{
       "label" : "Actions are what you intend to be tracking with HyperTrack. Actions typically correspond to the key actions that your users perform in your app: e.g., visit, meetup, pickup, delivery, and so on. Learn more about how you can build your use case with Actions.",
-      actionSwitchList : [{
+      "actionSwitchList": [{
         "icon" : "",
         "title" : "DELIVERY",
         "description" : "Create a delivery action with an expected place and expected time that, for example, auto-completes when the user arrives at the expected place."
@@ -121,11 +121,11 @@
       },{
         "icon" : "",
         "title" : "TRACK THROUGH THE DAY",
-        "description" : "In case you want to track a user through the day, set up a rule that auto-creates an action at the "start "of the day and auto-completes it at the end of the day."
+        "description" : "In case you want to track a user through the day, set up a rule that auto-creates an action at the \"start\"of the day and auto-completes it at the end of the day."
       }],
-      caseItems : [
+      "caseItems" : [
         {
-          ""label"" : "Create a delivery action with an expected place and expected time that, for example, auto-completes when the user arrives at the expected place.",
+          "label" : "Create a delivery action with an expected place and expected time that, for example, auto-completes when the user arrives at the expected place.",
           "title" : "DELIVERY",
           "fileName": "LoginActivity.java",
           "fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
@@ -152,4 +152,4 @@
     "status": "incomplete",
     "content" : []
   }
-];
+]
