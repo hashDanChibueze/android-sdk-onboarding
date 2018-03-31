@@ -64,7 +64,7 @@
       "language": "java"
     }]
   }, {
-    "name ": "3 | Enable communication",
+    "name": "3 | Enable communication",
     "status": "incomplete",
     "content": [
       {
