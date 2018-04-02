@@ -25,7 +25,7 @@
       },
       {
         "fileName": "MyApplication.java",
-        "label" : "Initialize the SDK with the publisher keys",
+        "label" : "Initialize the SDK with your publishable keys",
         "language": "java",
         "fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyApplication.java",
         "lines": [
