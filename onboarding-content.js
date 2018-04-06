@@ -59,7 +59,7 @@
 				"end": 235
 			}
 		],
-		"label": "Ask your users permission to access location",
+		"label": "Ask user permission to access location",
 		"language": "java"
 	}]
 }, {
@@ -103,14 +103,14 @@
 	"name": "5 | Create action",
 	"status": "incomplete",
 	"content": [{
-		"label": "Actions are what you int\"end \"to be tracking with HyperTrack. Actions typically correspond to the key actions that your users perform in your app: e.g., visit, meetup, pickup, delivery, and so on. Learn more about how you can build your use case with Actions.",
+		"label": "Action is the unit of tracking with HyperTrack. Actions typically correspond to the key actions that your users perform in your app: e.g., visit, meetup, pickup, delivery, and so on. <a href="https://www.hypertrack.com/docs/guides/action">Learn more</a> about how you can build your use case with Actions.",
 		"type": "action-picker",
 		"actionSwitchList": [{
 			"icon": "",
 			"title": "DELIVERY",
 			"description": "Create a delivery action with an expected place and expected time that, for example, auto-completes when the user arrives at the expected place.",
 			"content": {
-				"label": "Create a delivery action with an expected place and expected time that, for example, auto-completes when the user arrives at the expected place.",
+				"label": "",
 				"title": "DELIVERY",
 				"fileName": "LoginActivity.java",
 				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
