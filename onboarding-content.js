@@ -166,24 +166,24 @@
 		"type": "track-options",
 		"cards": [{
 			"title": "Dashboard",
-			"text": "Track here <a href=\"https://dashboard.hypertrack.com/list/actions\" target=\"_blank\">https://dashboard.hypertrack.com/list/actions.\n</a>",
+			"text": "Every action that you create can be tracked on HyperTrack dashboard. You can also embed this view as iframe into your own dashboard.",
 			"cta": {
 				"text": "Track on dashboard",
-				"url": ""
+				"url": "https://dashboard.hypertrack.com/list/actions"
 			}
 		}, {
 			"title": "Tracking URL",
-			"text": "Track using the unique trck.at tracking URL that was sent in response to create-action API. Here is the URL for the action you just created: <a href=\"https://dashboard.hypertrack.com/list/actions\" target=\"_blank\">https://dashboard.hypertrack.com/list/actions.</a>",
+			"text": "For every action that you create, we send an unique trck.at URL in response to create-action API.",
 			"cta": {
 				"text": "Track on Unique URL",
-				"url": ""
+				"url": "http://eta.fyi/GKVG9d"
 			}
 		}, {
 			"title": "Track in mobile app",
-			"text": "Follow the tutorial to build your own tracking experience within your Android app, iOS app or Web app using our SDKs.",
+			"text": "You can build a tracking experience within your Android app, iOS app or Web app using our SDKs.",
 			"cta": {
 				"text": "See guide",
-				"url": ""
+				"url": "https://www.hypertrack.com/docs/guides/action"
 			}
 		}]
 	}]
