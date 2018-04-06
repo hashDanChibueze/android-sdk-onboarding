@@ -179,7 +179,7 @@
 				"url": "http://eta.fyi/GKVG9d"
 			}
 		}, {
-			"title": "Track in mobile app",
+			"title": "Track within your app",
 			"text": "You can build a tracking experience within your Android app, iOS app or Web app using our SDKs.",
 			"cta": {
 				"text": "See guide",
