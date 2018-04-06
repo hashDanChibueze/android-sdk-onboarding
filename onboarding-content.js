@@ -103,7 +103,7 @@
 	"name": "5 | Create action",
 	"status": "incomplete",
 	"content": [{
-		"label": "Action is the unit of tracking with HyperTrack. Actions typically correspond to the key actions that your users perform in your app: e.g., visit, meetup, pickup, delivery, and so on. <a href="https://www.hypertrack.com/docs/guides/action">Learn more</a> about how you can build your use case with Actions.",
+		"label": "Action is the unit of tracking with HyperTrack. Actions typically correspond to the key actions that your users perform in your app: e.g., visit, meetup, pickup, delivery, and so on. Learn more about how you can build your use case with Actions.",
 		"type": "action-picker",
 		"actionSwitchList": [{
 			"icon": "",
