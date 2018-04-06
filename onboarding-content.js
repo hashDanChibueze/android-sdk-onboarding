@@ -110,7 +110,7 @@
 			"title": "DELIVERY",
 			"description": "Create a delivery action with an expected place and expected time that, for example, auto-completes when the user arrives at the expected place.",
 			"content": {
-				"label": "TBD",
+				"label": "",
 				"title": "DELIVERY",
 				"fileName": "LoginActivity.java",
 				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
@@ -134,7 +134,7 @@
 			"title": "VISIT",
 			"description": "Create a visit action with no expected place. Mark it complete using an API call.",
 			"content": {
-				"label": "Create a delivery action with an expected place and expected time that, for example, auto-completes when the user arrives at the expected place.",
+				"label": "",
 				"title": "DELIVERY",
 				"fileName": "LoginActivity.java",
 				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
