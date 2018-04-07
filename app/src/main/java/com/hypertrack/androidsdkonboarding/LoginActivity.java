@@ -1,7 +1,9 @@
 package com.hypertrack.androidsdkonboarding;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -13,10 +15,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
 import com.hypertrack.lib.HyperTrack;
 import com.hypertrack.lib.callbacks.HyperTrackCallback;
 import com.hypertrack.lib.internal.common.util.HTTextUtils;
+import com.hypertrack.lib.models.Action;
+import com.hypertrack.lib.models.ActionParamsBuilder;
 import com.hypertrack.lib.models.ErrorResponse;
+import com.hypertrack.lib.models.Place;
 import com.hypertrack.lib.models.SuccessResponse;
 import com.hypertrack.lib.models.User;
 import com.hypertrack.lib.models.UserParams;
@@ -29,6 +35,7 @@ public class LoginActivity extends BaseActivity {
 
     private EditText nameText, phoneNumberText;
     private LinearLayout loginBtnLoader;
+    public static final String HT_QUICK_START_SHARED_PREFS_KEY = "com.hypertrack.quickstart:SharedPreference";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +43,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         // Check if user is logged in
-        if (HyperTrack.isTracking()) {
+        if (getUser() != null) {
             Intent mainActivityIntent = new Intent(this, MainActivity.class);
             startActivity(mainActivityIntent);
             finish();
@@ -135,7 +142,7 @@ public class LoginActivity extends BaseActivity {
                 // Handle createUser success here, if required
                 // HyperTrack SDK auto-configures UserId on createUser API call,
                 // so no need to call HyperTrack.setUserId() API
-
+                saveUser(user);
                 // On UserLogin success
                 onUserLoginSuccess();
             }
@@ -156,33 +163,32 @@ public class LoginActivity extends BaseActivity {
      * Call this method when user has successfully logged in
      */
     private void onUserLoginSuccess() {
-        HyperTrack.startTracking(new HyperTrackCallback() {
+        ActionParamsBuilder actionParamsBuilder = new ActionParamsBuilder();
+        actionParamsBuilder.setType(Action.TYPE_VISIT);
+        actionParamsBuilder.setExpectedPlace(new Place().setAddress("HyperTrack").setCountry("India"));
+        HyperTrack.createAndAssignAction(actionParamsBuilder.build(), new HyperTrackCallback() {
             @Override
-            public void onSuccess(@NonNull SuccessResponse successResponse) {
-                // Hide Login Button loader
-                loginBtnLoader.setVisibility(View.GONE);
-
-                Toast.makeText(LoginActivity.this, R.string.login_success_msg,
-                        Toast.LENGTH_SHORT).show();
-
-                // Start User Session by starting MainActivity
-                Intent mainActivityIntent = new Intent(
-                        LoginActivity.this, MainActivity.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            public void onSuccess(@NonNull SuccessResponse response) {
+                Action action = (Action) response.getResponseObject();
+                saveAction(action);
+                Intent mainActivityIntent = new Intent(LoginActivity.this,
+                        MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainActivityIntent);
                 finish();
             }
 
             @Override
             public void onError(@NonNull ErrorResponse errorResponse) {
-                // Hide Login Button loader
-                loginBtnLoader.setVisibility(View.GONE);
-
-                Toast.makeText(LoginActivity.this, R.string.login_error_msg
-                                + " " + errorResponse.getErrorMessage(),
-                        Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void saveAction(Action action) {
+        SharedPreferences sharedPreferences = getSharedPreferences(HT_QUICK_START_SHARED_PREFS_KEY,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("action_id", action.getId());
+        editor.apply();
     }
 
     /**
@@ -234,5 +240,31 @@ public class LoginActivity extends BaseActivity {
                         Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void saveUser(User user) {
+        SharedPreferences sharedPreferences = getSharedPreferences(HT_QUICK_START_SHARED_PREFS_KEY,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user", new GsonBuilder().create().toJson(user));
+        editor.apply();
+    }
+
+    private User getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences(HT_QUICK_START_SHARED_PREFS_KEY,
+                Context.MODE_PRIVATE);
+        String jsonString = sharedPreferences.getString("user", "null");
+        if (HTTextUtils.isEmpty(jsonString)) {
+            return null;
+        }
+        User user = null;
+        try {
+
+            user = new GsonBuilder().create().fromJson(jsonString, User.class);
+        } catch (Exception e) {
+            return null;
+        }
+
+        return user;
     }
 }

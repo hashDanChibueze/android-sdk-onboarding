@@ -1,12 +1,16 @@
 package com.hypertrack.androidsdkonboarding;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.hypertrack.lib.HyperTrack;
+
+import static com.hypertrack.androidsdkonboarding.LoginActivity.HT_QUICK_START_SHARED_PREFS_KEY;
 
 public class MainActivity extends BaseActivity {
 
@@ -37,7 +41,8 @@ public class MainActivity extends BaseActivity {
                     Toast.LENGTH_SHORT).show();
 
             // Stop HyperTrack SDK
-            HyperTrack.stopTracking();
+            HyperTrack.completeAction(getActionId());
+            clearUser();
 
             // Proceed to LoginActivity for a fresh User Login
             Intent loginIntent = new Intent(MainActivity.this,
@@ -47,4 +52,18 @@ public class MainActivity extends BaseActivity {
             finish();
         }
     };
+
+    public  void clearUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences(HT_QUICK_START_SHARED_PREFS_KEY,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
+
+    private String getActionId() {
+        SharedPreferences sharedPreferences = getSharedPreferences(HT_QUICK_START_SHARED_PREFS_KEY,
+                Context.MODE_PRIVATE);
+        return sharedPreferences.getString("action_id", null);
+    }
 }
