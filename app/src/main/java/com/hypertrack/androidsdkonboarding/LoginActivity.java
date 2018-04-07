@@ -121,17 +121,17 @@ public class LoginActivity extends BaseActivity {
         final String name = nameText.getText().toString();
         final String phoneNumber = phoneNumberText.getText().toString();
         String UUID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        final String lookupId = HTTextUtils.isEmpty(UUID) ? phoneNumber : UUID;
+        final String uniqueId = HTTextUtils.isEmpty(UUID) ? phoneNumber : UUID;
 
         /**
-         * Get or Create a User for given lookupId on HyperTrack Server here to
+         * Get or Create a User for given uniqueId on HyperTrack Server here to
          * login your user & configure HyperTrack SDK with this generated
          * HyperTrack UserId.
          * OR
          * Implement your API call for User Login and get back a HyperTrack
          * UserId from your API Server to be configured in the HyperTrack SDK.
          */
-        UserParams userParams = new UserParams().setName(name).setPhone(phoneNumber).setLookupId(lookupId);
+        UserParams userParams = new UserParams().setName(name).setPhone(phoneNumber).setUniqueId(uniqueId);
         HyperTrack.getOrCreateUser(userParams, new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {

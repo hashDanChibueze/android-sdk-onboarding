@@ -1,57 +1,169 @@
-# android-sdk-onboarding
-Example app for Android SDK Onboarding flow
+# Sample Android App using HyperTrack SDK
+A sample Android application demonstrating the use of HyperTrack SDK.
 
-HyperTrack Onboarding link: https://dashboard.hypertrack.com/onboarding/sdk/android
+<p>
+<img src="assets/login_activity.png" alt="Login Activity" width="250" height="480">
 
-## Install the SDK
+<img src="assets/login_activity_location_permission.png" alt="Location Permission" width="250" height="480">
 
-1. In your app's `build.gradle` file, define the minimum SDK version, repositories and dependencies as shown. Once configured, run a gradle sync to import the SDK and its dependencies to your project.
+<img src="assets/main_activity.png" alt="LogOut" width="250" height="480">
+</p>
 
-![Gradle file](https://s3.amazonaws.com/dashboard-v3-assets/gradle.png)
 
-2. Once Gradle sync is complete, you can use the SDK methods inside your project. Configure your publishable key and initialise the SDK in the `onCreate` method of your Application class. This needs to be done only once in the app lifecycle.
+## Requirements
+[Android Studio](https://developer.android.com/studio/index.html) with emulator (or test device)
 
-> **Account keys**
-> Sign up to get account keys if you haven't already.
+## Basic Setup
 
-# Enable location
-The SDK uses the `ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION` permissions, which are already included in the SDK manifest file.
+#### Step 1. Clone this repository
 
-## Run-time permissions
-* `requestPermissions()` API: to enable location permissions on run-time
-* `requestLocationServices()` API: to enable location services at high accuracy
+Clone this repository
+```bash
+# Clone this repository
+$ git clone https://github.com/hypertrack/quickstart-android.git
+```
 
-# Identify device
-The SDK needs a **User** object to identify the device. The SDK has a convenience method `getOrCreateUser()` to lookup an existing user using a unique identifier (called `lookupId`) or create one if necessary.
+**OR**
 
-Method parameters
+In Android Studio
 
-| Parameter | Description |
-|-----------|-------------|
-| userName  | Name of the user entity |
-| phone     | Phone number of the user entity |
-| lookupId  | Unique identifier for your user |
+**Goto File > New > Project from Version Control > Git**
+Enter Enter Git Repository URL https://github.com/hypertrack/quickstart-android.git and Click on Clone.
 
-Use this API in conjunction to your app's login flow, and call `getOrCreate` at the end of a successful login flow. This API is a network call, and needs to be done only once in the user session lifecycle.
+#### Step 2. Signup and get Test Publishable key.
+1. Signup [here](https://dashboard.hypertrack.com/signup).
+2. Get `test` publishable key from [dashboard](https://dashboard.hypertrack.com/settings) settings page.
+3. Add the test publishable key to [MyApplication](https://github.com/hypertrack/quickstart-android/blob/master/app/src/main/java/com/hypertrack/quickstart/MyApplication.java) file.
 
-# Start tracking
-Use the `startTracking()` method to start tracking. Once the user starts tracking, you can see **Trips** and **Stops** of the user.
+```java
+HyperTrack.initialize(this.getApplicationContext(), BuildConfig.HYPERTRACK_PK);
+```
 
-This is a non-blocking API call, and will also work when the device is offline. 
+#### Step 3. FCM Integration
+The SDK has a bi-directional communication model with the server. This enables the SDK to run on a variable frequency model, which balances the fine trade-off between low latency tracking and battery efficiency, and improve robustness. For this purpose, the Android SDK uses FCM or GCM silent notifications. 
 
-> **View on the dashboard**
-> View the user's trips and stops [here](https://dashboard.hypertrack.com).
+By default, project is configured with test `google-service.json` credentials.
 
-# Stop tracking
-Use the `stopTracking()` method to stop tracking. This can be done when the user logs out.
+For testing purpose, you need to add FCM Server Key `AAAAckZ1H20:APA91bEyilv0qgVyfSECb-jZxsgetGyKyJGVIavCOLhWn5GdI0aQBz76dPKAf5P73fVBE7OXoS5QicAV5ASrmcyhizGnNbD0DhwJPVSZaLKQrRGYH3Bam-7WGe3OEX_Chhf7CEPToVw0` on HyperTrack [dashboard settings page](https://dashboard.hypertrack.com/settings).
 
-# Simulate a trip for Testing
-To simulate a trip, replace `startTracking` API with `startMockTracking` and `stopTracking` API with `stopMockTracking`.
-Refer to our [docs](docs.hypertrack.com/sdks/android/basic.html#simulate-a-trip-for-testing) for more info.
+**Note:**
+But if you want to use your FCM configuration or moving to production then replace `FCM Server Key` on HyperTrack [dashboard settings page](https://dashboard.hypertrack.com/settings) with yours FCM server key and replace
+[google-service.json](https://github.com/hypertrack/quickstart-android/blob/master/app/google-services.json) .
 
-> **Ready to deploy!**
-> Your Android app is all set to be deployed on the Play Store. As your users update and log in, their live location will be visualized on this dashboard.
+## Usage
 
-## Next steps
-* Add team members to the HyperTrack dashboard
-* Follow one of our use-case tutorials to build your live location feature
+#### Step 1. Location Permission and Location Setting.
+Ask for `location permission` and `location services`. Refer [here](https://docs.hypertrack.com/sdks/android/reference/hypertrack.html#boolean-checklocationpermission) for more detail.
+```java
+// Check for Location permission
+if (!HyperTrack.checkLocationPermission(this)) {
+    HyperTrack.requestPermissions(this);
+    return;
+}
+
+// Check for Location settings
+if (!HyperTrack.checkLocationServices(this)) {
+    HyperTrack.requestLocationServices(this);
+}
+```
+
+#### Step 2. Create HyperTrack User
+The next thing that you need to do is to create a HyperTrack user. More details about the function [here](https://docs.hypertrack.com/sdks/android/reference/user.html#getorcreate-user).
+
+When the user is created, we need to create action to start tracking his location and activity.
+
+```java
+// Get User details, if specified
+final String name = nameText.getText().toString();
+final String phoneNumber = phoneNumberText.getText().toString();
+final String uniqueId = !HTTextUtils.isEmpty(uniqueId.getText().toString()) ?
+        uniqueId.getText().toString() : phoneNumber;
+
+UserParams userParams = new UserParams().setName(name).setPhone(phoneNumber).setUniqueId(uniqueId);
+/**
+ * Get or Create a User for given uniqueId on HyperTrack Server here to
+ * login your user & configure HyperTrack SDK with this generated
+ * HyperTrack UserId.
+ * OR
+ * Implement your API call for User Login and get back a HyperTrack
+ * UserId from your API Server to be configured in the HyperTrack SDK.
+ */
+HyperTrack.getOrCreateUser(userParams, new HyperTrackCallback() {
+    @Override
+    public void onSuccess(@NonNull SuccessResponse successResponse) {
+       
+        User user = (User) successResponse.getResponseObject();
+        String userId = user.getId();
+        // Handle createUser success here, if required
+        // HyperTrack SDK auto-configures UserId on createUser API call,
+        // so no need to call HyperTrack.setUserId() API
+
+        // On UserLogin success
+        onUserLoginSuccess();
+    }
+
+    @Override
+    public void onError(@NonNull ErrorResponse errorResponse) {
+
+        Toast.makeText(LoginActivity.this, R.string.login_error_msg + " " + errorResponse
+                .getErrorMessage(), Toast.LENGTH_SHORT).show();
+    }
+});
+```
+
+#### STEP 3. Create Action to start tracking
+```java
+ private void onUserLoginSuccess() {
+
+        //Refer here for more detail
+        // https://docs.hypertrack.com/sdks/android/reference/action.html#create-and-assign-action
+        ActionParamsBuilder actionParamsBuilder = new ActionParamsBuilder();
+        actionParamsBuilder.setType(Action.TYPE_VISIT);
+        actionParamsBuilder.setExpectedPlace(new Place().setAddress("HyperTrack").setCountry("India"));
+        HyperTrack.createAndAssignAction(actionParamsBuilder.build(), new HyperTrackCallback() {
+            @Override
+            public void onSuccess(@NonNull SuccessResponse response) {
+                Action action = (Action) response.getResponseObject();
+                saveAction(action);
+                Intent mainActivityIntent = new Intent(LoginActivity.this,
+                        MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(mainActivityIntent);
+                finish();
+                Log.d(TAG, "onSuccess:  Action Created");
+            }
+
+            @Override
+            public void onError(@NonNull ErrorResponse errorResponse) {
+                Log.e(TAG, "onError:  Action Creation Failed: " + errorResponse.getErrorMessage());
+            }
+        });
+    }
+```
+
+#### Step 4. Complete Action to stop tracking
+When user logs out call `HyperTracking.completeAction(actionId)` to complete the action. Refer [here](https://docs.hypertrack.com/sdks/android/reference/action.html#complete-action) for more detail.
+
+```java
+HyperTrack.completeAction(actionId);
+```
+
+## Testing (Mocking user Location)
+A user’s tracking session starts with HyperTrack.createMockAction() and ends with HyperTrack.completeMockAction(). In order to mock user movement developers would call `HyperTrack.createMockAction()` and `HyperTrack.completeMockAction()` respectively.
+
+[`HyperTrack.createMockAction()`]() API starts a simulation from the device's current location to a nearby place of interest within a 5-10km radius so the session is long enough to test your app & its features.
+
+Developer can simulate user's location to a particular destination location from a given source location.
+```
+public static void createMockAction(ActionParams actionParams, @NonNull LatLng sourceLatLng, @NonNull LatLng destinationLatLng, @Nullable HyperTrackCallback callback);
+```
+
+## Documentation
+For detailed documentation of the APIs, customizations and what all you can build using HyperTrack, please visit the official [docs](https://docs.hypertrack.com/).
+
+## Contribute
+Feel free to clone, use, and contribute back via [pull requests](https://help.github.com/articles/about-pull-requests/). We'd love to see your pull requests - send them in! Please use the [issues tracker](https://github.com/hypertrack/quickstart-android/issues) to raise bug reports and feature requests.
+
+We are excited to see what live location feature you build in your app using this project. Do ping us at help@hypertrack.io once you build one, and we would love to feature your app on our blog!
+
+## Support
+Join our [Slack community](http://slack.hypertrack.com) for instant responses, or interact with our growing [community](https://community.hypertrack.com). You can also email us at help@hypertrack.com.
