@@ -22,14 +22,11 @@ import com.hypertrack.lib.internal.common.util.HTTextUtils;
 import com.hypertrack.lib.models.Action;
 import com.hypertrack.lib.models.ActionParamsBuilder;
 import com.hypertrack.lib.models.ErrorResponse;
+import com.hypertrack.lib.models.GeoJSONLocation;
 import com.hypertrack.lib.models.Place;
 import com.hypertrack.lib.models.SuccessResponse;
 import com.hypertrack.lib.models.User;
 import com.hypertrack.lib.models.UserParams;
-
-/**
- * Created by piyush on 08/05/17.
- */
 
 public class LoginActivity extends BaseActivity {
 
@@ -104,6 +101,57 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
+     * Handle on Grant Location Permissions request accepted/denied result
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions,
+                grantResults);
+
+        if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0]
+                    == PackageManager.PERMISSION_GRANTED) {
+                // Check if Location Settings are enabled to proceed
+                checkForLocationSettings();
+
+            } else {
+                // Handle Location Permission denied error
+                Toast.makeText(this, "Location Permission denied.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /**
+     * Handle on Enable Location Services request accepted/denied result
+     *
+     * @param requestCode
+     * @param resultCode
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_SERVICES) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Check if Location Settings are enabled to proceed
+                checkForLocationSettings();
+
+            } else {
+                // Handle Enable Location Services request denied error
+                Toast.makeText(this, R.string.enable_location_settings,
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /**
      * Call this method to attempt user login. This method will create a User
      * on HyperTrack Server and configure the SDK using this generated UserId.
      */
@@ -163,9 +211,38 @@ public class LoginActivity extends BaseActivity {
      * Call this method when user has successfully logged in
      */
     private void onUserLoginSuccess() {
+
         ActionParamsBuilder actionParamsBuilder = new ActionParamsBuilder();
         actionParamsBuilder.setType(Action.TYPE_VISIT);
-        actionParamsBuilder.setExpectedPlace(new Place().setAddress("HyperTrack").setCountry("India"));
+
+        HyperTrack.createAndAssignAction(actionParamsBuilder.build(), new HyperTrackCallback() {
+            @Override
+            public void onSuccess(@NonNull SuccessResponse response) {
+                Action action = (Action) response.getResponseObject();
+                saveAction(action);
+                Intent mainActivityIntent = new Intent(LoginActivity.this,
+                        MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(mainActivityIntent);
+                finish();
+            }
+
+            @Override
+            public void onError(@NonNull ErrorResponse errorResponse) {
+            }
+        });
+    }
+
+    /**
+     * Call this method when user has successfully logged in
+     */
+    private void createDeliveryAction(){
+        Place expectedPlace = new Place();
+        expectedPlace.setLocation(new GeoJSONLocation(12.928951, 77.632951));
+
+        ActionParamsBuilder actionParamsBuilder = new ActionParamsBuilder();
+        actionParamsBuilder.setType(Action.TYPE_DELIVERY);
+        actionParamsBuilder.setExpectedPlace(expectedPlace);
+
         HyperTrack.createAndAssignAction(actionParamsBuilder.build(), new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse response) {
@@ -189,57 +266,6 @@ public class LoginActivity extends BaseActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("action_id", action.getId());
         editor.apply();
-    }
-
-    /**
-     * Handle on Grant Location Permissions request accepted/denied result
-     *
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions,
-                grantResults);
-
-        if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0]
-                    == PackageManager.PERMISSION_GRANTED) {
-                // Check if Location Settings are enabled to proceed
-                checkForLocationSettings();
-
-            } else {
-                // Handle Location Permission denied error
-                Toast.makeText(this, "Location Permission denied.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    /**
-     * Handle on Enable Location Services request accepted/denied result
-     *
-     * @param requestCode
-     * @param resultCode
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_SERVICES) {
-            if (resultCode == Activity.RESULT_OK) {
-                // Check if Location Settings are enabled to proceed
-                checkForLocationSettings();
-
-            } else {
-                // Handle Enable Location Services request denied error
-                Toast.makeText(this, R.string.enable_location_settings,
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     private void saveUser(User user) {

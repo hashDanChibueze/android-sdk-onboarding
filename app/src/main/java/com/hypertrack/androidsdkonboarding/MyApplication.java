@@ -4,10 +4,6 @@ import android.app.Application;
 
 import com.hypertrack.lib.HyperTrack;
 
-/**
- * Created by piyush on 08/05/17.
- */
-
 public class MyApplication extends Application {
 
     @Override
@@ -16,7 +12,7 @@ public class MyApplication extends Application {
 
         // Initialize HyperTrack SDK with your Publishable Key here
         // Refer to documentation at
-        // https://docs.hypertrack.com/gettingstarted/authentication.html
+        // https://docs.hypertrack.com/#authentication
         // @NOTE: Add **YOUR_PUBLISHABLE_KEY_HERE** here for SDK to be
         // authenticated with HyperTrack Server
         HyperTrack.initialize(this, YOUR_PUBLISHABLE_KEY_HERE);
