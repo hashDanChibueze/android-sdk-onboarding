@@ -30,7 +30,7 @@
 			"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyApplication.java",
 			"lines": [{
 				"start": 13,
-				"end": 28
+				"end": 18
 			}]
 		}
 	]
@@ -42,21 +42,18 @@
 		"fileName": "LoginActivity.java",
 		"type": "code-block",
 		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
-		"lines": [{
-				"start": 67,
-				"end": 69
+		"lines": [
+			{
+				"start":  83,
+				"end": 101
 			},
 			{
-				"start": 81,
-				"end": 99
+				"start": 103,
+				"end": 129
 			},
 			{
-				"start": 101,
-				"end": 127
-			},
-			{
-				"start": 129,
-				"end": 150	
+				"start": 131,
+				"end": 152	
 			}
 		],
 		"label": "Ask user permission to access location",
@@ -123,8 +120,8 @@
 				"fileName": "LoginActivity.java",
 				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 				"lines": [{
-						"start": 208,
-						"end": 231
+						"start": 210,
+						"end": 233
 					}
 				],
 				"language": "java"
