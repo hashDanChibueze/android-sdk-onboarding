@@ -29,8 +29,8 @@
 			"language": "java",
 			"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyApplication.java",
 			"lines": [{
-				"start": 17,
-				"end": 22
+				"start": 13,
+				"end": 28
 			}]
 		}
 	]
@@ -43,20 +43,20 @@
 		"type": "code-block",
 		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 		"lines": [{
-				"start": 65,
-				"end": 77
+				"start": 67,
+				"end": 69
 			},
 			{
-				"start": 79,
-				"end": 98
+				"start": 81,
+				"end": 99
 			},
 			{
-				"start": 188,
-				"end": 213
+				"start": 101,
+				"end": 127
 			},
 			{
-				"start": 215,
-				"end": 235
+				"start": 129,
+				"end": 150	
 			}
 		],
 		"label": "Ask user permission to access location",
@@ -68,10 +68,10 @@
 	"content": [{
 		"fileName": "MyFirebaseMessagingService.java",
 		"type": "code-block",
-		"fileURL": "https://raw.githubusercontent.com/hypertrack/use-cases-example-android/master/app/src/main/java/com/hypertrack/usecases/firebase/MyFirebaseMessagingService.java",
+		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyFirebaseMessagingService.java",
 		"lines": [{
 			"start": 1,
-			"end": 16
+			"end": 30
 		}],
 		"language": "java",
 		"label": "Enable bidirectional communication between server and SDK using FCM notifications"
@@ -84,16 +84,8 @@
 		"type": "code-block",
 		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 		"lines": [{
-				"start": 119,
-				"end": 130
-			},
-			{
-				"start": 134,
-				"end": 152
-			},
-			{
-				"start": 155,
-				"end": 186
+				"start": 153,
+				"end": 207
 			}
 		],
 		"language": "java",
@@ -115,16 +107,8 @@
 				"fileName": "LoginActivity.java",
 				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 				"lines": [{
-						"start": 119,
-						"end": 130
-					},
-					{
-						"start": 134,
-						"end": 152
-					},
-					{
-						"start": 155,
-						"end": 186
+						"start": 235,
+						"end": 261
 					}
 				],
 				"language": "java"
@@ -135,20 +119,12 @@
 			"description": "Create a visit action with no expected place. Mark it complete using an API call.",
 			"content": {
 				"label": "",
-				"title": "DELIVERY",
+				"title": "VISIT",
 				"fileName": "LoginActivity.java",
 				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 				"lines": [{
-						"start": 119,
-						"end": 130
-					},
-					{
-						"start": 134,
-						"end": 152
-					},
-					{
-						"start": 155,
-						"end": 186
+						"start": 208,
+						"end": 231
 					}
 				],
 				"language": "java"
@@ -156,7 +132,19 @@
 		}, {
 			"icon": "",
 			"title": "TRACK THROUGH THE DAY",
-			"description": "In case you want to track a user through the day, set up a rule that auto-creates an action at the start of the day and auto-completes it at the end of the day."
+			"description": "In case you want to track a user through the day, set up a rule that auto-creates an action at the start of the day and auto-completes it at the end of the day.",
+			"content": {
+				"label": "",
+				"title": "TRACK",
+				"fileName": "LoginActivity.java",
+				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
+				"lines": [{
+						"start": 209,
+						"end": 234
+					}
+				],
+				"language": "java"
+			}
 		}]
 	}]
 }, {
