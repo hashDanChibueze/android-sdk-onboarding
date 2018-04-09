@@ -133,8 +133,12 @@
 				"fileName": "LoginActivity.java",
 				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 				"lines": [{
-						"start": 235,
-						"end": 261
+						"start": 1,
+						"end": 238
+					},
+					{
+						"start": 261,
+						"end": 296
 					}
 				],
 				"language": "java"
@@ -149,8 +153,12 @@
 				"fileName": "LoginActivity.java",
 				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 				"lines": [{
-						"start": 210,
-						"end": 233
+						"start": 1,
+						"end": 214
+					},
+					{
+						"start": 233,
+						"end": 296
 					}
 				],
 				"language": "java"
