@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
-
+/**
+* HyperTrack requires minSDKVersion to be 14 or above.
+* Make sure that your minSDKVersion is set to 14 or above.
+*/
 android {
     defaultConfig {
         minSdkVersion 14
