@@ -10,25 +10,29 @@
 			"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/build.gradle",
 			"lines": [
 				{
-					"start": 3,
-					"end": 5
+					"start": 2,
+					"end": 8
 				},
 				{
-					"start": 11,
-					"end": 11
+					"start": 14,
+					"end": 14
 				},
 				{
-					"start": 21,
-					"end": 21
+					"start": 24,
+					"end": 24
 				},
 		
 				{
-					"start": 28,
-					"end": 30
+					"start": 26,
+					"end": 33
 				},
 				{
-					"start": 42,
-					"end": 52
+					"start": 35,
+					"end": 35
+				},
+				{
+					"start": 45,
+					"end": 56
 				}
 			]
 		},
