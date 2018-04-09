@@ -77,7 +77,19 @@
 		}],
 		"language": "java",
 		"label": "Enable bidirectional communication between server and SDK using FCM notifications"
-	}]
+	},
+	{
+		"fileName": "MyApplication.java",
+		"label": "Add your FCM key",
+		"type": "code-block",
+		"language": "java",
+		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyApplication.java",
+		"lines": [{
+			"start": 1,
+			"end": 10
+			}]
+		}
+	]
 }, {
 	"name": "4 | Add user",
 	"status": "incomplete",
