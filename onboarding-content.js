@@ -8,10 +8,20 @@
 			"type": "code-block",
 			"language": "gradle",
 			"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/build.gradle",
-			"lines": [{
-					"start": 8,
-					"end": 8
+			"lines": [
+				{
+					"start": 3,
+					"end": 5
 				},
+				{
+					"start": 11,
+					"end": 11
+				},
+				{
+					"start": 21,
+					"end": 21
+				},
+		
 				{
 					"start": 28,
 					"end": 30
