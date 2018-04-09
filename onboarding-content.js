@@ -73,7 +73,7 @@
 		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyFirebaseMessagingService.java",
 		"lines": [{
 			"start": 1,
-			"end": 30
+			"end": 6
 		}],
 		"language": "java",
 		"label": "Enable bidirectional communication between server and SDK using FCM notifications"
