@@ -197,8 +197,8 @@
 			"title": "Tracking URL",
 			"text": "For every action that you create, we send an unique trck.at URL in response to create-action API.",
 			"cta": {
-				"text": "Track on Unique URL",
-				"url": "http://eta.fyi/GKVG9d"
+				"text": "See API response",
+				"url": "https://docs.hypertrack.com/api/entities/action.html#properties-computed-by-hypertrack"
 			}
 		}, {
 			"title": "Track within your app",
