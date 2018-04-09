@@ -53,16 +53,12 @@
 		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 		"lines": [
 			{
-				"start":  83,
-				"end": 101
+				"start":  1,
+				"end": 82
 			},
 			{
-				"start": 103,
-				"end": 129
-			},
-			{
-				"start": 131,
-				"end": 152	
+				"start": 153,
+				"end": 297	
 			}
 		],
 		"label": "Ask user permission to access location",
