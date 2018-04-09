@@ -98,8 +98,20 @@
 		"type": "code-block",
 		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/LoginActivity.java",
 		"lines": [{
-				"start": 153,
-				"end": 207
+				"start": 1,
+				"end": 181
+			},
+			{
+				"start": 186,
+				"end": 195
+			},
+			{
+				"start": 200,
+				"end": 205
+			},
+			{
+				"start": 207,
+				"end": 297
 			}
 		],
 		"language": "java",
