@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * Call this method when User Login button has been clicked.
+     * Call this method when user login button has been tapped.
      * Note that this method is linked with the layout file (content_login.xml)
      * using this button's layout's onClick attribute. So no need to invoke this
      * method or handle login button's click listener explicitly.
@@ -76,12 +76,12 @@ public class LoginActivity extends BaseActivity {
      */
     public void onLoginButtonClick(View view) {
         // Check if Location Settings are enabled, if yes then attempt
-        // DriverLogin
+        // UserLogin
         checkForLocationSettings();
     }
 
     /**
-     * Call this method to check Location Settings before proceeding for UserLogin
+     * Call this method to check Location Settings before proceeding with UserLogin
      */
     private void checkForLocationSettings() {
         // Check for Location permission
@@ -152,7 +152,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * Call this method to attempt user login. This method will create a User
+     * Call this method to attempt user login. This method will create a UserId
      * on HyperTrack Server and configure the SDK using this generated UserId.
      */
     private void attemptUserLogin() {
@@ -189,7 +189,7 @@ public class LoginActivity extends BaseActivity {
                 User user = (User) successResponse.getResponseObject();
                 // Handle createUser success here, if required
                 // HyperTrack SDK auto-configures UserId on createUser API call,
-                // so no need to call HyperTrack.setUserId() API
+                // 
                 saveUser(user);
                 // On UserLogin success
                 onUserLoginSuccess();
