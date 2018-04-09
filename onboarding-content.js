@@ -38,8 +38,8 @@
 			"language": "java",
 			"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyApplication.java",
 			"lines": [{
-				"start": 13,
-				"end": 18
+				"start": 1,
+				"end": 6
 			}]
 		}
 	]
