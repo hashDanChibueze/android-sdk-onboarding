@@ -10,11 +10,11 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // Initialize HyperTrack SDK with your Publishable Key here
-        // Refer to documentation at
-        // https://docs.hypertrack.com/#authentication
-        // @NOTE: Add **YOUR_PUBLISHABLE_KEY_HERE** here for SDK to be
-        // authenticated with HyperTrack Server
+        // Initialize HyperTrack SDK with your Publishable Key here.
+        // You need to sign up to get your keys: 
+        // https://www.hypertrack.com/signup
+        // Your keys are available here:
+        // https://dashboard.hypertrack.com/settings
         HyperTrack.initialize(this, YOUR_PUBLISHABLE_KEY_HERE);
     }
 }
