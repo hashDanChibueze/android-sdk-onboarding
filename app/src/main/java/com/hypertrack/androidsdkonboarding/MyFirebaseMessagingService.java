@@ -7,11 +7,6 @@ import static com.hypertrack.lib.internal.transmitter.utils.Constants.HT_SDK_NOT
 public class MyFirebaseMessagingService extends HyperTrackFirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        /**
-         * Call super.onMessageReceived() method
-         * SDK uses this method to handle HyperTrack notifications
-         * https://docs.hypertrack.com/sdks/android/gcm-integration.html
-         */
         super.onMessageReceived(remoteMessage);
 
         if (remoteMessage.getData() != null) {
@@ -24,7 +19,6 @@ public class MyFirebaseMessagingService extends HyperTrackFirebaseMessagingServi
                 return;
             }
         }
-
         // Handle your notifications here.
     }
 }
