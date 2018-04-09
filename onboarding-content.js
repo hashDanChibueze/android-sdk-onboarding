@@ -1,5 +1,5 @@
 [{
-	"name": "1 | Install SDK",
+	"name": "Install SDK",
 	"label": "Import the SDK in your app",
 	"status": "active",
 	"content": [{
@@ -44,7 +44,7 @@
 		}
 	]
 }, {
-	"name": "2 | Set permissions",
+	"name": "Set permissions",
 	"label": "Set the right permissions",
 	"status": "incomplete",
 	"content": [{
@@ -65,7 +65,7 @@
 		"language": "java"
 	}]
 }, {
-	"name": "3 | Enable communication",
+	"name": "Enable communication",
 	"status": "incomplete",
 	"content": [{
 		"fileName": "MyFirebaseMessagingService.java",
@@ -91,7 +91,7 @@
 		}
 	]
 }, {
-	"name": "4 | Add user",
+	"name": "Add user",
 	"status": "incomplete",
 	"content": [{
 		"fileName": "LoginActivity.java",
@@ -118,7 +118,7 @@
 		"label": "Add user on the SDK to identify the device"
 	}]
 }, {
-	"name": "5 | Create action",
+	"name": "Create action",
 	"status": "incomplete",
 	"content": [{
 		"label": "Action is the unit of tracking with HyperTrack. Actions typically correspond to the key actions that your users perform in your app: e.g., visit, meetup, pickup, delivery, and so on. Learn more about how you can build your use case with Actions.",
@@ -182,7 +182,7 @@
 		}]
 	}]
 }, {
-	"name": "6 | Track action",
+	"name": "Track action",
 	"status": "incomplete",
 	"content": [{
 		"type": "track-options",
