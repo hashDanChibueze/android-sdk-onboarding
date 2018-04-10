@@ -176,7 +176,7 @@
 					"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MainActivity.java",
 					"lines": [{
 							"start": 1,
-							"end": 95
+							"end": 94
 						},
 						{
 							"start": 109,
