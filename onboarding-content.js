@@ -69,8 +69,7 @@
 						"end": 30
 					}
 				],
-				"language": "xml",
-				"label": "Enable bidirectional communication between server and SDK using FCM notifications"
+				"language": "xml"
 			},
 			{
 				"label": "Add your FCM key",
