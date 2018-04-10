@@ -25,19 +25,67 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery Action"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/create_delivery_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:onClick="createDeliveryAction"
+            android:text="@string/create_delivery_action" />
+
+        <Button
+            android:id="@+id/complete_delivery_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:onClick="completeDeliveryAction"
+            android:text="@string/complete_delivery_action" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_huge"
+            android:text="Visit Action"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/create_visit_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:onClick="createVisitAction"
+            android:text="@string/create_visit_action" />
+
+        <Button
+            android:id="@+id/complete_visit_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:onClick="completeVisitAction"
+            android:text="@string/complete_visit_action" />
 
         <Button
             android:id="@+id/logout_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_huge"
+            android:gravity="center"
+            android:paddingBottom="@dimen/padding_base"
             android:paddingLeft="@dimen/padding_xxxhigh"
             android:paddingRight="@dimen/padding_xxxhigh"
             android:paddingTop="@dimen/padding_base"
-            android:paddingBottom="@dimen/padding_base"
-            android:textSize="@dimen/text_size_large"
-            android:gravity="center"
-            android:text="@string/logout_button_text" />
+            android:text="@string/logout_button_text"
+            android:textSize="@dimen/text_size_large" />
     </LinearLayout>
 </LinearLayout>
