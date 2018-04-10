@@ -79,18 +79,15 @@
 		"label": "Enable bidirectional communication between server and SDK using FCM notifications"
 	},
 	{
-		"fileName": "MyApplication.java",
 		"label": "Add your FCM key",
-		"type": "code-block",
-		"language": "java",
-		"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyApplication.java",
-		"lines": [{
-			"start": 1,
-			"end": 13
-			}]
-		}
-	]
-}, {
+		"type": "video-block",
+    "content" : "Head over to <a href='https://console.firebase.google.com/project/'>FCM Console</a>, select your project, and then visit Settings > Cloud Messaging to get your FCM server key. Copy the key and it in our dashbaord settings",
+    "cta" : {
+      "text" : "Add your FCM key",
+      "href" : "https://dashboard.hypertrack.com/settings"
+    }
+		}]
+  }, {
 	"name": "Add user",
 	"status": "incomplete",
 	"content": [{
