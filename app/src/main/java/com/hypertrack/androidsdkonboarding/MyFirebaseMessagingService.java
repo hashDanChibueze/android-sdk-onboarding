@@ -1,8 +1,8 @@
 package com.hypertrack.androidsdkonboarding;
+
 import com.google.firebase.messaging.RemoteMessage;
 import com.hypertrack.lib.HyperTrackFirebaseMessagingService;
-
-import static com.hypertrack.lib.internal.transmitter.utils.Constants.HT_SDK_NOTIFICATION_KEY;
+import com.hypertrack.lib.internal.transmitter.utils.Constants;
 
 public class MyFirebaseMessagingService extends HyperTrackFirebaseMessagingService {
     @Override
@@ -10,7 +10,7 @@ public class MyFirebaseMessagingService extends HyperTrackFirebaseMessagingServi
         super.onMessageReceived(remoteMessage);
 
         if (remoteMessage.getData() != null) {
-            String sdkNotification = remoteMessage.getData().get(HT_SDK_NOTIFICATION_KEY);
+            String sdkNotification = remoteMessage.getData().get(Constants.HT_SDK_NOTIFICATION_KEY);
             if (sdkNotification != null && sdkNotification.equalsIgnoreCase("true")) {
                 /**
                  * HyperTrack notifications are received here
