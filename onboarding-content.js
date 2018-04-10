@@ -59,7 +59,7 @@
 			{
 				"fileName": "AndroidManifest.xml",
 				"type": "code-block",
-				"fileURL": "https://raw.githubusercontent.com/hypertrack/android-sdk-onboarding/master/app/src/main/java/com/hypertrack/androidsdkonboarding/MyFirebaseMessagingService.java",
+				"fileURL": "https://github.com/hypertrack/android-sdk-onboarding/blob/master/app/src/main/AndroidManifest.xml",
 				"lines": [{
 						"start": 1,
 						"end": 21
