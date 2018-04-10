@@ -23,4 +23,8 @@
 
     <!-- Permission strings -->
     <string name="enable_location_settings">Enable Location settings in HIGH_ACCURACY mode to proceed</string>
+    <string name="create_delivery_action">Create Delivery Action</string>
+    <string name="create_visit_action">Create Visit Action</string>
+    <string name="complete_delivery_action">Complete Delivery Action</string>
+    <string name="complete_visit_action">Complete Visit Action</string>
 </resources>
