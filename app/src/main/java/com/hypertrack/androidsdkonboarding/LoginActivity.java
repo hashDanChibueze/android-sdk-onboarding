@@ -19,11 +19,7 @@ import com.google.gson.GsonBuilder;
 import com.hypertrack.lib.HyperTrack;
 import com.hypertrack.lib.callbacks.HyperTrackCallback;
 import com.hypertrack.lib.internal.common.util.HTTextUtils;
-import com.hypertrack.lib.models.Action;
-import com.hypertrack.lib.models.ActionParamsBuilder;
 import com.hypertrack.lib.models.ErrorResponse;
-import com.hypertrack.lib.models.GeoJSONLocation;
-import com.hypertrack.lib.models.Place;
 import com.hypertrack.lib.models.SuccessResponse;
 import com.hypertrack.lib.models.User;
 import com.hypertrack.lib.models.UserParams;
@@ -180,16 +176,15 @@ public class LoginActivity extends BaseActivity {
          * UserId from your API Server to be configured in the HyperTrack SDK.
          */
         UserParams userParams = new UserParams().setName(name).setPhone(phoneNumber).setUniqueId(uniqueId);
-        HyperTrack.getOrCreateUser(userParams, new HyperTrackCallback(){
+        HyperTrack.getOrCreateUser(userParams, new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
+                User user = (User) successResponse.getResponseObject();
+
                 // Hide Login Button loader
                 loginBtnLoader.setVisibility(View.GONE);
-
-                User user = (User) successResponse.getResponseObject();
                 // Handle createUser success here, if required
                 // HyperTrack SDK auto-configures UserId on createUser API call,
-                // 
                 saveUser(user);
                 // On UserLogin success
                 onUserLoginSuccess();
@@ -212,60 +207,10 @@ public class LoginActivity extends BaseActivity {
      */
     private void onUserLoginSuccess() {
 
-        ActionParamsBuilder actionParamsBuilder = new ActionParamsBuilder();
-        actionParamsBuilder.setType(Action.TYPE_VISIT);
-
-        HyperTrack.createAndAssignAction(actionParamsBuilder.build(), new HyperTrackCallback() {
-            @Override
-            public void onSuccess(@NonNull SuccessResponse response) {
-                Action action = (Action) response.getResponseObject();
-                saveAction(action);
-                Intent mainActivityIntent = new Intent(LoginActivity.this,
-                        MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(mainActivityIntent);
-                finish();
-            }
-
-            @Override
-            public void onError(@NonNull ErrorResponse errorResponse) {
-            }
-        });
-    }
-
-    /**
-     * Call this method when user has successfully logged in
-     */
-    private void createDeliveryAction(){
-        Place expectedPlace = new Place();
-        expectedPlace.setLocation(new GeoJSONLocation(12.928951, 77.632951));
-
-        ActionParamsBuilder actionParamsBuilder = new ActionParamsBuilder();
-        actionParamsBuilder.setType(Action.TYPE_DELIVERY);
-        actionParamsBuilder.setExpectedPlace(expectedPlace);
-
-        HyperTrack.createAndAssignAction(actionParamsBuilder.build(), new HyperTrackCallback() {
-            @Override
-            public void onSuccess(@NonNull SuccessResponse response) {
-                Action action = (Action) response.getResponseObject();
-                saveAction(action);
-                Intent mainActivityIntent = new Intent(LoginActivity.this,
-                        MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(mainActivityIntent);
-                finish();
-            }
-
-            @Override
-            public void onError(@NonNull ErrorResponse errorResponse) {
-            }
-        });
-    }
-
-    private void saveAction(Action action) {
-        SharedPreferences sharedPreferences = getSharedPreferences(HT_QUICK_START_SHARED_PREFS_KEY,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("action_id", action.getId());
-        editor.apply();
+        Intent mainActivityIntent = new Intent(LoginActivity.this,
+                MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(mainActivityIntent);
+        finish();
     }
 
     private void saveUser(User user) {
