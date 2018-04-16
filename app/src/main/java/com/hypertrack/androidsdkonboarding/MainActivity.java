@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity {
         actionParamsBuilder.setType(Action.TYPE_DELIVERY);
         actionParamsBuilder.setExpectedPlace(expectedPlace);
 
-        HyperTrack.createAndAssignAction(actionParamsBuilder.build(), new HyperTrackCallback() {
+        HyperTrack.createAction(actionParamsBuilder.build(), new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse response) {
                 Action action = (Action) response.getResponseObject();
@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity {
         ActionParamsBuilder actionParamsBuilder = new ActionParamsBuilder();
         actionParamsBuilder.setType(Action.TYPE_VISIT);
 
-        HyperTrack.createAndAssignAction(actionParamsBuilder.build(), new HyperTrackCallback() {
+        HyperTrack.createAction(actionParamsBuilder.build(), new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse response) {
                 Action action = (Action) response.getResponseObject();
