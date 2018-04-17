@@ -206,6 +206,7 @@
 		"status": "incomplete",
 		"content": [{
 			"type": "track-options",
+			"label": "You're all set to compile and run your app. Once you run the app, an action will be created that you can create in one of the following ways.",
 			"cards": [{
 				"title": "Dashboard",
 				"text": "Every action that you create can be tracked on HyperTrack dashboard. You can also embed this view as iframe into your own dashboard.",
@@ -225,7 +226,7 @@
 				"text": "You can build a tracking experience within your Android app, iOS app or Web app using our SDKs.",
 				"cta": {
 					"text": "See guide",
-					"url": "https://www.hypertrack.com/docs/guides/action"
+					"url": "https://www.hypertrack.com/docs/guides/experience"
 				}
 			}]
 		}]
