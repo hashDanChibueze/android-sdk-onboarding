@@ -50,7 +50,7 @@ dependencies {
      * transitive = true enables the SDK to include its internal dependencies automatically.
      * Refer to https://docs.hypertrack.com/sdks/android/troubleshoot.html for more info.
      */
-    implementation('com.hypertrack:android:0.7.27@aar') {
+    implementation('com.hypertrack:android:0.7.30@aar') {
         transitive = true;
     }
 }
